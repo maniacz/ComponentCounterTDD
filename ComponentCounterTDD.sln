@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentCounterTDD", "ComponentCounterTDD\ComponentCounterTDD.csproj", "{3580B713-F6CE-4BB0-B26A-1CD31ECAD644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentCounter", "ComponentCounter\ComponentCounter.csproj", "{1EA02AC1-2C2B-4A18-AC3D-3160331286AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentCounterTestProject", "ComponentCounterTestProject\ComponentCounterTestProject.csproj", "{43406420-B8AB-4C00-9E3D-59C3215AF0A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3580B713-F6CE-4BB0-B26A-1CD31ECAD644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3580B713-F6CE-4BB0-B26A-1CD31ECAD644}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3580B713-F6CE-4BB0-B26A-1CD31ECAD644}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3580B713-F6CE-4BB0-B26A-1CD31ECAD644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA02AC1-2C2B-4A18-AC3D-3160331286AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA02AC1-2C2B-4A18-AC3D-3160331286AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA02AC1-2C2B-4A18-AC3D-3160331286AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA02AC1-2C2B-4A18-AC3D-3160331286AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43406420-B8AB-4C00-9E3D-59C3215AF0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43406420-B8AB-4C00-9E3D-59C3215AF0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43406420-B8AB-4C00-9E3D-59C3215AF0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43406420-B8AB-4C00-9E3D-59C3215AF0A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
