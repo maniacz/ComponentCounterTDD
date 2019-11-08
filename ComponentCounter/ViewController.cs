@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ComponentCounter
 {
@@ -22,9 +23,15 @@ namespace ComponentCounter
             DateTime dateTimeFrom = dateFrom.Date + timeFrom.TimeOfDay;
             DateTime dateTimeTo = dateTo.Date + timeTo.TimeOfDay;
 
-            //TODO: To chyba można przerobić zgodnie z wzorcem Factory
-            db = new DBHelper((Line)lineIndex);
-            return db.GetDrawerCountData(dateTimeFrom, dateTimeTo).Tables[0].DefaultView;
+            if ((mainForm.Controls.Find("cbxLine", true).First() as ComboBox).SelectedIndex == 0)
+            {
+                return db.GetAllLinesDrawerCountData(dateTimeFrom, dateTimeTo).Tables[0].DefaultView;
+            }
+            else
+            {
+                db = new DBHelper((Line)lineIndex);
+                return db.GetDrawerCountData(dateTimeFrom, dateTimeTo).Tables[0].DefaultView;
+            }
         }
 
         internal object[] GetLineNames()

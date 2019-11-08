@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ComponentCounter.exe" version="1.0.0.0" publicKeyToken="9a0c055854a90218" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ComponentCounter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ComponentCounter.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ComponentCounter.exe" size="186280">
+      <assemblyIdentity name="ComponentCounter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>gTGrKpZvCFpSLQcxI8vP+IgcHzZpXUq7HVfS1keOR5U=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Oracle.ManagedDataAccess.dll" size="5005824">
+      <assemblyIdentity name="Oracle.ManagedDataAccess" version="4.122.19.1" publicKeyToken="89B483F429C47342" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8pLszBbaw1SzIyewQiosKI9OCXEMmUlpEPdMiRgjiqU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ComponentCounter.exe.config" size="1774">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>BcnSxjvLp1njZ4iwx7BZadccS0DdNPA5JlqN4t0fYro=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=ADTRW\KipkaL" issuerKeyHash="b148bd849bba854f468d7a4c110394479be97ad5" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>3+eCWQ81KnnRjM46bL9MKsJiIAlkB7XFqhvnsIH0PXc=</DigestValue></Reference></SignedInfo><SignatureValue>Fmlfx1itMnVapYR24XE4aMCMCtiP2KPJBjNzRLU9Au1L0pReyeQenP9dt52TxF30WuRWGErxZEEGlOigDuF4y59cjCxhHEmQiuCtD0yuzpttjUHPhJlP3ZG9mUbe9FfLFh0Ij88TGAv8w+3BdsgQp98cfhLn1y3s6U8VaJuDntE=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0low31bVbX/UXxSFmyFD2nCr23xIeDKH+bzRnKuPV68JkepHJpevOJvPfJp0p8kCoicaWb65l8ciFB3WbxOis9PiBoetWyGX8x56r1R1Em/t4g5YfIOSIdxyl/L2HfYmZjEiHeCFIAM0fjQKHVU19vvL7inxEXi+Y4BBIlT2gyU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="773df481b0e71baac5b50764092062c22a4cbf6c3ace8cd1792a350f5982e7df" Description="" Url=""><as:assemblyIdentity name="ComponentCounter.exe" version="1.0.0.0" publicKeyToken="9a0c055854a90218" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=ADTRW\KipkaL</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>9sZMbmb7H4c7mu/laJ1t2CtgoCZdXRYxhj9xAXw8xu0=</DigestValue></Reference></SignedInfo><SignatureValue>kZV9YwCA7QM6LTPkbRrAPV3x5jHCIzD1ZwZbF7PphUziEiwyiRktO+NhQqo57UM80DAZHcN3uRDXtG4fXrKOj0db69rbviHYwKEItXH0u5sN8DfTIIswlaQ+eSVLEeOTKrkatoC1v3kS4N2XRGIjQNJQeT8nwvz/uMN6K+qc0+g=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0low31bVbX/UXxSFmyFD2nCr23xIeDKH+bzRnKuPV68JkepHJpevOJvPfJp0p8kCoicaWb65l8ciFB3WbxOis9PiBoetWyGX8x56r1R1Em/t4g5YfIOSIdxyl/L2HfYmZjEiHeCFIAM0fjQKHVU19vvL7inxEXi+Y4BBIlT2gyU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIByTCCATKgAwIBAgIQOmahRbwoZohA1aQQo9OcCTANBgkqhkiG9w0BAQsFADAjMSEwHwYDVQQDHhgAQQBEAFQAUgBXAFwASwBpAHAAawBhAEwwHhcNMTkwOTE2MTAyODA3WhcNMjAwOTE1MTYyODA3WjAjMSEwHwYDVQQDHhgAQQBEAFQAUgBXAFwASwBpAHAAawBhAEwwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANJaMN9W1W1/1F8UhZshQ9pwq9t8SHgyh/m80Zyrj1evCZHqRyaXrzibz3yadKfJAqInGlm+uZfHIhQd1m8TorPT4gaHrVshl/Meeq9UdRJv7eIOWHyDkiHccpfy9h32JmYxIh3ghSADNH40Ch1VNfb7y+4p8RF4vmOAQSJU9oMlAgMBAAEwDQYJKoZIhvcNAQELBQADgYEASozlWlrY/oj8kITYWV6dFRHAgsJXz1h6SFao+pC61Y+IinMJZoz45IDFtFsTGrotPnWQ7uwHt3w46P4Og+0FR+YroKdIcc74GKFsQT0w1J4RKck3+zVz1Dfkl4rNp+CcjiBpV1RA9AI36flzxdwvUkkxr/e4s/sY7nUZbUIELP4=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

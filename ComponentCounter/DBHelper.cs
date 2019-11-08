@@ -47,6 +47,8 @@ namespace ComponentCounter
             }
         }
 
+
+
         public ConnectionState Connect()
         {
             try
@@ -186,6 +188,88 @@ namespace ComponentCounter
             return recIds;
         }
 
+        internal DataSet GetAllLinesDrawerCountData(DateTime dateTimeFrom, DateTime dateTimeTo)
+        {
+            DBHelper dbFiat = new DBHelper(Line.EPS_FIAT);
+            DataSet templateDataSet = dbFiat.GetDrawerCountData(dateTimeFrom, dateTimeFrom);
+
+            int dataSetRowCount = templateDataSet.Tables[0].Rows.Count;
+
+            DBHelper db = null;
+            for (int i = 0; i < dataSetRowCount; i++)
+            {
+                int usedComponentCount = 0;
+                int totalComponentCount = 0;
+
+                foreach (Line line in Enum.GetValues(typeof(Line)))
+                {
+                    //if (line.Equals(Line.ALL) || line.ToString().StartsWith("EPS_VW"))
+                    if (line.Equals(Line.ALL))
+                        continue;
+
+                    try
+                    {
+                        db = DBConnectionStaticSimpleFactory.CreateDBHelper(line);
+                        DataSet ds = db.GetDrawerCountData(dateTimeFrom, dateTimeTo);
+                        usedComponentCount = Int32.Parse(ds.Tables[0].Rows[i][1].ToString());
+                        totalComponentCount += usedComponentCount;
+                    }
+                    catch (Exception)
+                    {
+                        //todo: Zaloguj błąd
+                        throw;
+                    }
+                }
+                templateDataSet.Tables[0].Rows[i][1] = totalComponentCount;
+            }
+
+            return templateDataSet;
+            /*
+            DataSet ds = db.GetDrawerCountData(dateTimeFrom, dateTimeTo);
+
+            for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
+            {
+                //DataRow dataRow = new DataRow("0").
+                int t1;
+                if (Int32.TryParse(ds1.Tables[0].Rows[i][1].ToString(), out t1))
+                {
+                    bool temp = false;
+                }
+
+                try
+                {
+                    drawerNo = Int32.Parse(ds1.Tables[0].Rows[i][0].ToString());
+                    //usedComponentCount = Int32.Parse(ds1.Tables[0].Rows[i][1].ToString());
+                    //usedComponentPartNo = Int32.Parse(ds1.Tables[0].Rows[i][2].ToString());
+                }
+                catch (Exception)
+                {
+                    bool temp = false;
+                    throw;
+                }
+
+                DataSet allLinesDataSet = new DataSet();
+                //allLinesDataSet.
+                ds1.Tables[0].Rows[0][0] = drawerNo + usedComponentCount;
+
+
+                Int32.TryParse(ds1.Tables[0].Rows[i][1].ToString(), out t1);
+                ds1.Tables[0].Rows[i][1] = ((int)ds1.Tables[0].Rows[i][1] + (int)ds2.Tables[0].Rows[i][1]);
+                byte p = 0;
+            }
+
+            return ds1;
+            */
+        }
+
+        public static class DBConnectionStaticSimpleFactory
+        {
+            public static DBHelper CreateDBHelper(Line lineToConnect)
+            {
+                DBHelper db = new DBHelper(lineToConnect);
+                return db;
+            }
+        }
 
         #region "Connection strings"
         Dictionary<string, string> ConnectionStrings = new Dictionary<string, string>()
@@ -231,8 +315,10 @@ namespace ComponentCounter
         #endregion
     }
 
+
     public enum Line
     {
+        ALL,
         EPS_FIAT,
         EPS_FIAT2,
         EPS_VW1,
