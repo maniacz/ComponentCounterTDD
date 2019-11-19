@@ -21,10 +21,10 @@ namespace ComponentCounter
             dtpDateFrom.Value = DateTime.Today.AddDays(-1);
             dtpDateTo.Value = DateTime.Today;
             dtpTimeFrom.Value = DateTime.Parse("06:00");
-            dtpTimeTo.Value = DateTime.Parse("07:00");
+            dtpTimeTo.Value = DateTime.Parse("06:00");
 
             cbxLine.Items.AddRange(vc.GetLineNames());
-            cbxLine.SelectedIndex = 0;
+            cbxLine.SelectedIndex = 1;
         }
 
         private void BtnGetData_Click(object sender, EventArgs e)

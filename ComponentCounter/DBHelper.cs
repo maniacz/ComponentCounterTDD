@@ -14,34 +14,96 @@ namespace ComponentCounter
         public OracleConnection Connection { get; private set; }
         private string connectionString;
         private string opWithDrawer;
+        private string sqlQueryReturningComponentCount;
+
         public DBHelper(Line lineToConnect)
         {
+            Dictionary<string, string> sqlQuery = new Dictionary<string, string>();
+
+            string sqlNonFlex = string.Concat("select h1.szuflada, count(pv.VALUE) ilość, h1.itempartno ",
+                            "from (select itempartno, ",
+                            "decode(itempartno, 'A0038109', '1', 'A0038110', '2', 'A0035512', '3', 'A0038271', '4', 'A0032886', '5', 'A0038111', '6', 'A0032887', '7', 'A0032888', '8') szuflada ",
+                            "from  ",
+                              "(select op, itempartno, decode(itempartno, 'A0038109', '1', 'A0038110', '2', 'A0035512', '3', 'A0038271', '4', 'A0032886', '5', 'A0038111', '6', 'A0032887', '7', 'A0032888', '8') szuflada ",
+                              "from acc_bomitem_setup ",
+                              "where op = :opDrawer1) ",
+                            "where op = :opDrawer2 and szuflada is not null ",
+                            "group by szuflada, itempartno) h1  ",
+                              "left join ",
+                                    "ACC_PROCDATA_VALUE pv ",
+                                "on h1.szuflada = pv.value ",
+                              "and pv.DATAID in ( %parameters% ) ",
+                                "and pv.CTIME between :timeFrom and :timeTo ",
+                            "group by h1.szuflada, h1.itempartno ",
+                            "order by h1.szuflada");
+
+            sqlQuery.Add("nonFlex", sqlNonFlex);
+
+            string sqlFlex = string.Concat("select h1.szuflada, count(pv.VALUE) ilość, h1.itempartno ",
+                            "from (select itempartno, ",
+                            "decode(itempartno, 'A0065901', '1', 'A0071454', '2', 'A0071455', '3', 'A0071456', '4', 'A0071457', '5', 'A0071458', '6', 'A0071459', '7', 'A0071460',",
+                                            "'8', 'A0076018', '9', 'A0076019', '10', 'A0076020', '11', 'A0076021', '12', 'A0076022', '13', 'A0076023', '14') szuflada ",
+                            "from  ",
+                              "(select op, itempartno, decode(itempartno, 'A0065901', '1', 'A0071454', '2', 'A0071455', '3', 'A0071456', '4', 'A0071457', '5', 'A0071458', '6', 'A0071459', '7', 'A0071460', ",
+                                                                                                "'8', 'A0076018', '9', 'A0076019', '10', 'A0076020', '11', 'A0076021', '12', 'A0076022', '13', 'A0076023', '14') szuflada ",
+                              "from acc_bomitem_setup ",
+                              "where op = :opDrawer1) ",
+                            "where op = :opDrawer2 and szuflada is not null ",
+                            "group by szuflada, itempartno) h1  ",
+                              "left join ",
+                                    "ACC_PROCDATA_VALUE pv ",
+                                "on h1.szuflada = pv.value ",
+                              "and pv.DATAID in ( %parameters% ) ",
+                                "and pv.CTIME between :timeFrom and :timeTo ",
+                            "group by h1.szuflada, h1.itempartno ",
+                            "order by to_number(h1.szuflada)");
+
+            sqlQuery.Add("flex", sqlFlex);
+
             switch (lineToConnect)
             {
                 case Line.EPS_FIAT:
                     connectionString = ConnectionStrings["FACTORY_6103"];
                     opWithDrawer = "140";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
                 case Line.EPS_FIAT2:
                     connectionString = ConnectionStrings["FACTORY_B404"];
                     opWithDrawer = "140";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
                 case Line.EPS_VW1:
                     connectionString = ConnectionStrings["FACTORY_6104"];
                     opWithDrawer = "140";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
                 case Line.EPS_VW2:
                     connectionString = ConnectionStrings["FACTORY_6105"];
                     opWithDrawer = "140";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
                 case Line.EPS_VW4:
                     connectionString = ConnectionStrings["FACTORY_B403"];
                     opWithDrawer = "61";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
                 case Line.EPS_FORD:
                     connectionString = ConnectionStrings["FACTORY_B405"];
                     opWithDrawer = "60B";
+                    sqlQueryReturningComponentCount = sqlQuery["nonFlex"];
                     break;
+                case Line.EPS_FLEX_FORD:
+                    connectionString = ConnectionStrings["FACTORY_B406"];
+                    opWithDrawer = "60";
+                    sqlQueryReturningComponentCount = sqlQuery["flex"];
+                    break;
+                    /*
+                case Line.EPS_FLEX_VW:
+                    connectionString = ConnectionStrings["FACTORY_B406"];
+                    opWithDrawer = "61";
+                    sqlQueryReturningComponentCount = sqlQuery["flex"];
+                    break;
+                    */
                 default:
                     throw new Exception("Wrong line to connect to.");
             }
@@ -96,28 +158,11 @@ namespace ComponentCounter
         public DataSet GetDrawerCountData(DateTime timeFrom, DateTime timeTo)
         {
             DataSet result;
-            string sql = string.Concat("select h1.szuflada, count(pv.VALUE) ilość, h1.itempartno ",
-                                        "from (select itempartno, ",
-                                        "decode(itempartno, 'A0038109', '1', 'A0038110', '2', 'A0035512', '3', 'A0038271', '4', 'A0032886', '5', 'A0038111', '6', 'A0032887', '7', 'A0032888', '8') szuflada ",
-                                        "from  ",
-                                          "(select op, itempartno, decode(itempartno, 'A0038109', '1', 'A0038110', '2', 'A0035512', '3', 'A0038271', '4', 'A0032886', '5', 'A0038111', '6', 'A0032887', '7', 'A0032888', '8') szuflada ",
-                                          "from acc_bomitem_setup ",
-                                          "where op = :opDrawer1) ",
-                                        "where op = :opDrawer2 and szuflada is not null ",
-                                        "group by szuflada, itempartno) h1  ",
-                                          "left join ",
-                                                "ACC_PROCDATA_VALUE pv ",
-                                            "on h1.szuflada = pv.value ",
-                                          "and pv.DATAID in ( %parameters% ) ",
-                                            "and pv.CTIME between :timeFrom and :timeTo ",
-                                        "group by h1.szuflada, h1.itempartno ",
-                                        "order by h1.szuflada");
-
             List<int> procDataCfgDrawerRecIds = GetProcDataCfgDrawerRecIds();
 
             OracleDataAdapter adp = null;
             using (Connection = new OracleConnection(connectionString))
-            using (OracleCommand query = new OracleCommand(sql, Connection))
+            using (OracleCommand query = new OracleCommand(sqlQueryReturningComponentCount, Connection))
             {
                 try
                 {
@@ -138,7 +183,7 @@ namespace ComponentCounter
                     query.Parameters.Add("timeFrom", timeFrom);
                     query.Parameters.Add("timeTo", timeTo);
 
-                    query.CommandText = sql.Replace("%parameters%", string.Join(",", parameters.ToArray()));
+                    query.CommandText = sqlQueryReturningComponentCount.Replace("%parameters%", string.Join(",", parameters.ToArray()));
 
                     adp = new OracleDataAdapter(query);
                     result = new DataSet();
@@ -159,7 +204,8 @@ namespace ComponentCounter
 
         public List<int> GetProcDataCfgDrawerRecIds()
         {
-            string sql = @"select REC_ID from ACC_PROCDATA_CFG where OP = :op and LOWER(NAME) = 'drewer number' or LOWER(NAME) = 'drawer no' or LOWER(NAME) = 'box number'";
+            string sql = @"select REC_ID from ACC_PROCDATA_CFG where OP = :op and (LOWER(NAME) = 'drewer number' or LOWER(NAME) = 'drawer no' or LOWER(NAME) = 'box number' " +
+                @"or LOWER(NAME) = 'ford - feeder no' or LOWER(NAME) = 'vw - drawer no')";
             List<int> recIds = new List<int>();
 
             using (OracleConnection connection = new OracleConnection(connectionString))
@@ -324,6 +370,7 @@ namespace ComponentCounter
         EPS_VW1,
         EPS_VW2,
         EPS_VW4,
-        EPS_FORD
+        EPS_FORD,
+        EPS_FLEX_FORD
     }
 }

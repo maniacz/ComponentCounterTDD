@@ -25,7 +25,10 @@ namespace ComponentCounter
 
             if ((mainForm.Controls.Find("cbxLine", true).First() as ComboBox).SelectedIndex == 0)
             {
-                return db.GetAllLinesDrawerCountData(dateTimeFrom, dateTimeTo).Tables[0].DefaultView;
+                MessageBox.Show("Funkcjonalność wyłączona. Wybierz konkretną linię.");
+                return null;
+                //TODO: wywalić albo przyspieszyć implementację pobierania danych o o-ringach dla wszystkich linii
+                //return db.GetAllLinesDrawerCountData(dateTimeFrom, dateTimeTo).Tables[0].DefaultView;
             }
             else
             {

@@ -99,7 +99,7 @@
             this.dgvDataFromDB.Name = "dgvDataFromDB";
             this.dgvDataFromDB.ReadOnly = true;
             this.dgvDataFromDB.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvDataFromDB.Size = new System.Drawing.Size(306, 199);
+            this.dgvDataFromDB.Size = new System.Drawing.Size(306, 331);
             this.dgvDataFromDB.TabIndex = 5;
             // 
             // cbxLine
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 355);
+            this.ClientSize = new System.Drawing.Size(367, 511);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLinia);
